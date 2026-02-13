@@ -1,3 +1,13 @@
-console.log("hello world");
-console.log("halo cees");
-console.log("hidup jokowi");
+const express = require("express");
+const app = express();
+const port = 3000;
+
+app.get("/", (req, res) => {
+  res.send("<h1>Hello World!</h1>");
+});
+app.get("/about", (req, res) => {
+  res.send("<h1>Hello Fans chelsea on blue !</h1>");
+});
+app.listen(port, () => {
+  console.log(`Aplikasi Berjalan di port http://localhost:${port}`);
+});
