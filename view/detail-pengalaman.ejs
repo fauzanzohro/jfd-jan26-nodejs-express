@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Pengalaman</title>
+  </head>
+  <body>
+    <h1>pengalaman kandidat</h1>
+    <ul>
+      <li><%=nama%></li>
+      <li><%=alamat%></li>
+      <li><%=posisi%></li>
+      <li><%=perusahaan%></li>
+      <li><%=gaji.toLocaleString('id-ID')%></li>
+      <li><%=(gaji>10000000)?'kena pajak' : 'tidak kena'%></li>
+
+      <button>
+        <a href="/">beranda</a>
+      </button>
+
+      <button>
+        <a href="/profil">profil</a>
+      </button>
+    </ul>
+  </body>
+</html>
