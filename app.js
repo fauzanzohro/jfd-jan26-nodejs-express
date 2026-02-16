@@ -33,6 +33,13 @@ app.get("/karyawan", async (req, res) => {
   });
 });
 
+app.get("/karyawan/details/:id_kry", async (req, res) => {
+  let id_kry = req.params.id_kry;
+  res.render("karyawan/profil", {
+    profil_karyawan: await require("./model/m_karyawan").get_1_karyawan(id_kry),
+  });
+});
+
 // app.use((req, res) => {
 //   res.status(404).render("error");
 // });

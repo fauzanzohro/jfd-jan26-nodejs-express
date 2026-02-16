@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Karyawan</title>
+  </head>
+  <body>
+    <h1>Profil Karyawan</h1>
+    <% if (profil_karyawan.length>0) { %>
+     
+        <ul>
+          <li>Nama: <%= profil_karyawan[0].nama %></li>
+          <li>Kelahiran: <%= profil_karyawan[0].tanggal_lahir %></li>
+          <li>Gender: <%= profil_karyawan[0].jenis_kelamin %></li>
+          <li>Alamat: <%= profil_karyawan[0].alamat %></li>
+          <li>Agama: <%= profil_karyawan[0].agama_id %></li>
+          <li>Jabatan: <%= profil_karyawan[0].jabatan_id %></li>
+        </ul>
+    <% }else{%>
+        <p>Halaman Profil Tidak di Temukan</p>
+    <% }  %>
+     
+  </body>
+</html>

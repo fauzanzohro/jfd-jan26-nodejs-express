@@ -20,4 +20,16 @@ module.exports = {
       });
     });
   },
+  get_1_karyawan: function (id_kry) {
+    let sql = mysql.format("SELECT * FROM karyawan WHERE id =?", [id_kry]);
+    return new Promise(function (resolve, reject) {
+      db.query(sql, function (errorSql, hasil) {
+        if (errorSql) {
+          reject(errorSql);
+        } else {
+          resolve(hasil);
+        }
+      });
+    });
+  },
 };

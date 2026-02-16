@@ -8,14 +8,28 @@
 <body>
 
     <!-- teknik buka tutup ejs -->
-    <ul>
-        <% for( let i = 0; i < data_karyawan.length; i++ ) { %>
-        <li><%= data_karyawan[i].nama %>(<%= data_karyawan[i].jenis_kelamin  %>)</li>
+    <table border="1" cellspacing="0" style="text-align: center;" >
+<thead>
+<th>Nama</th>
+<th>Gender</th>
+<th>aksi</th>
+</thead>
+<tbody>
+    <% for( let i = 0; i < data_karyawan.length; i++ ) { %>
+        <tr>
+            <td><%= data_karyawan[i].nama %></td>
+            <td><%= data_karyawan[i].jenis_kelamin  %></td>
+            <td>
+                <a href="/karyawan/details/<%= data_karyawan[i].id%>">
+                <button style="padding: 8px;">Details</button>
+            </a></td>
+        </tr>
         <% } %>
-    </ul>
-
+        
+    </tbody>
+        </table>
 <!-- teknik 1 tag ejs -->
-<%
+<%#
     __append('<ul>')
     for (const i in data_karyawan) {
         __append(`<li>${data_karyawan[i].nama} (${data_karyawan[i].jenis_kelamin})</li>`)
