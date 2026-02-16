@@ -40,6 +40,15 @@ app.get("/karyawan/details/:id_kry", async (req, res) => {
   });
 });
 
+app.get("/karyawan/hapus/:id_kry", async (req, res) => {
+  let id_kry = req.params.id_kry;
+  let proses_hapus =
+    await require("./model/m_karyawan").hapus_1_karyawan(id_kry);
+  if (proses_hapus.affectedRows > 0) {
+    res.redirect("/karyawan");
+  }
+});
+
 // app.use((req, res) => {
 //   res.status(404).render("error");
 // });

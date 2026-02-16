@@ -12,7 +12,7 @@
 <thead>
 <th>Nama</th>
 <th>Gender</th>
-<th>aksi</th>
+<th colspan="2">aksi</th>
 </thead>
 <tbody>
     <% for( let i = 0; i < data_karyawan.length; i++ ) { %>
@@ -22,6 +22,10 @@
             <td>
                 <a href="/karyawan/details/<%= data_karyawan[i].id%>">
                 <button style="padding: 8px;">Details</button>
+            </a></td>
+             <td>
+                <a href="/karyawan/hapus/<%= data_karyawan[i].id%>" onclick="return confirm ('hapus karyawan <%= data_karyawan[i].nama%>')">
+                <button style="padding: 8px;">Hapus</button>
             </a></td>
         </tr>
         <% } %>
