@@ -24,9 +24,18 @@ app.get("/pengalaman", (req, res) => {
   });
 });
 
-app.use((req, res) => {
-  res.status(404).send("maaf url kamu salah");
+// syncronous =berjalan secara berurutan
+// asyncronous =berjalan secara tidak berurutan
+
+app.get("/karyawan", async (req, res) => {
+  res.render("karyawan/all", {
+    data_karyawan: await require("./model/m_karyawan").get_semua_karyawan(),
+  });
 });
+
+// app.use((req, res) => {
+//   res.status(404).render("error");
+// });
 
 app.listen(port, () => {
   console.log(`Aplikasi Berjalan di port http://localhost:${port}`);

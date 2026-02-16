@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karyawan</title>
+</head>
+<body>
+
+    <!-- teknik buka tutup ejs -->
+    <ul>
+        <% for( let i = 0; i < data_karyawan.length; i++ ) { %>
+        <li><%= data_karyawan[i].nama %>(<%= data_karyawan[i].jenis_kelamin  %>)</li>
+        <% } %>
+    </ul>
+
+<!-- teknik 1 tag ejs -->
+<%
+    __append('<ul>')
+    for (const i in data_karyawan) {
+        __append(`<li>${data_karyawan[i].nama} (${data_karyawan[i].jenis_kelamin})</li>`)
+    }
+    __append('</ul>')
+%>
+    
+</body>
+</html>
