@@ -1,0 +1,34 @@
+<h1>ini tambah</h1>
+
+<% if (req.query.error_msg) { %>
+ <h3><%= req.query.error_msg %></h3>
+<% } %>
+<form action="/karyawan/proses-tambah" method="post">
+  <div style="margin-bottom: 10px">
+    <label for="">Nama</label>
+    <input type="text" name="form_nama" placeholder="Masukan Nama Anda..." />
+  </div>
+
+  <div style="margin-bottom: 10px">
+    <label for="">Tanggal lahir</label>
+    <input type="date" name="form_tgl_lahir" />
+  </div>
+
+  <div style="margin-bottom: 10px">
+    <label for="">Jenis Kelamin</label>
+    <select name="form_gender">
+      <option value="">--Pilih--</option>
+      <option value="L">Laki-Laki</option>
+      <option value="P">Perempuan</option>
+    </select>
+  </div>
+
+  <div style="margin-bottom: 10px">
+    <label for="" style="vertical-align: top">Alamat</label>
+    <textarea
+      name="form_alamat"
+      placeholder="Masukan Alamat Anda..."
+    ></textarea>
+  </div>
+  <button type="submit">Simpan</button>
+</form>

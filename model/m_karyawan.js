@@ -45,4 +45,25 @@ module.exports = {
       });
     });
   },
+
+  insert_1_karyawan: function (req) {
+    let sql = mysql.format("INSERT INTO karyawan SET ?", [
+      {
+        nama: req.body.form_nama,
+        tanggal_lahir: req.body.form_tgl_lahir,
+        jenis_kelamin: req.body.form_gender,
+        alamat: req.body.form_alamat,
+        jabatan_id: 2,
+      },
+    ]);
+    return new Promise(function (resolve, reject) {
+      db.query(sql, function (errorSql, hasil) {
+        if (errorSql) {
+          reject(errorSql);
+        } else {
+          resolve(hasil);
+        }
+      });
+    });
+  },
 };

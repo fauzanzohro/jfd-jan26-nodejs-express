@@ -6,10 +6,13 @@
     <title>Karyawan</title>
 </head>
 <body>
-
+<a href="/karyawan/tambah"><button>+add</button></a>
     <!-- teknik buka tutup ejs -->
     <table border="1" cellspacing="0" style="text-align: center;" >
 <thead>
+    <% if (req.query.succes_msg) { %>
+ <h3 style="background-color: greenyellow;;"><%= req.query.succes_msg %></h3>
+<% } %>
 <th>Nama</th>
 <th>Gender</th>
 <th colspan="2">aksi</th>
