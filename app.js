@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const moment = require("moment");
 app.use(express.urlencoded({ extended: false }));
 app.set("view engine", "ejs"); //setting penggunaan template engine
 app.set("views", "./view"); // setting penggunaan folder untuk melihat html
@@ -52,8 +53,12 @@ app.get("/karyawan/hapus/:id_kry", async (req, res) => {
   }
 });
 
-app.get("/karyawan/tambah", (req, res) => {
-  res.render("karyawan/form-tambah", { req: req });
+app.get("/karyawan/tambah", async (req, res) => {
+  res.render("karyawan/form-tambah", {
+    req: req,
+    agama: await require("./model/m_agama").get_semua_agama(),
+    jabatan: await require("./model/m_jabatan").get_semua_jabatan(),
+  });
 });
 
 app.post("/karyawan/proses-tambah", async (req, res) => {
@@ -67,10 +72,22 @@ app.post("/karyawan/proses-tambah", async (req, res) => {
     }
   } catch (error) {
     res.redirect(
-      "/karyawan/tambah?error_msg=" + error.errno + ":" + error.sqlMessege,
+      "/karyawan/tambah?error_msg=" + error.errorno + ":" + error.sqlMessege,
     );
   }
 });
+
+app.get("/karyawan/edit/:id_kry", async (req, res) => {
+  let id_kry = req.params.id_kry;
+  res.render("karyawan/form-edit", {
+    req: req,
+    moment: moment,
+    agama: await require("./model/m_agama").get_semua_agama(),
+    jabatan: await require("./model/m_jabatan").get_semua_jabatan(),
+    data_karyawan: await require("./model/m_karyawan").get_1_karyawan(id_kry),
+  });
+});
+
 // app.use((req, res) => {
 //   res.status(404).render("error");
 // });

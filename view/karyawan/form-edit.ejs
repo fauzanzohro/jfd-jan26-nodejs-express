@@ -1,25 +1,35 @@
-<h1>ini tambah</h1>
+<h1>ini edit</h1>
+
 
 <% if (req.query.error_msg) { %>
  <h3><%= req.query.error_msg %></h3>
 <% } %>
-<form action="/karyawan/proses-tambah" method="post">
+<form action="/karyawan/proses-edit/<%= data_karyawan[0].id %>" method="post">
   <div style="margin-bottom: 10px">
     <label for="">Nama</label>
-    <input type="text" name="form_nama" placeholder="Masukan Nama Anda..." />
+    <input type="text" 
+    name="form_nama" 
+    value=" <%= data_karyawan[0].nama %>" 
+    placeholder="Masukan Nama Anda..." />
   </div>
 
   <div style="margin-bottom: 10px">
     <label for="">Tanggal lahir</label>
-    <input type="date" name="form_tgl_lahir" />
+    <input type="date" 
+    value="<%= moment(data_karyawan[0].tanggal_lahir).format('YYYY-MM-DD') %>" 
+    name="form_tgl_lahir" />
   </div>
 
   <div style="margin-bottom: 10px">
     <label for="">Jenis Kelamin</label>
     <select name="form_gender">
       <option value="">--Pilih--</option>
-      <option value="L">Laki-Laki</option>
-      <option value="P">Perempuan</option>
+      <option value="L" 
+      <%= (data_karyawan[0].jenis_kelamin=='L')?'selected':'' %>>
+      Laki-Laki</option>
+      <option value="P" 
+      <%= (data_karyawan[0].jenis_kelamin == 'P')?'selected':'' %>>
+      Perempuan</option>
     </select>
   </div>
 
@@ -28,9 +38,8 @@
     <textarea
       name="form_alamat"
       placeholder="Masukan Alamat Anda..."
-    ></textarea>
+    ><%= data_karyawan[0].alamat %></textarea>
 </div>
-
 
 
 <div style="margin-bottom: 10px">
@@ -38,7 +47,10 @@
   <select name="form_agama">
     <option value="">--pilih--</option>
     <% for( let i = 0; i < agama.length; i++ ) { %>
-    <option value="<%= agama[i].id %>"><%= agama[i].nama %></option>
+    <option 
+    value="<%= agama[i].id %>"  <%= (data_karyawan[0].agama_id == agama[i].id)?'selected':'' %>>
+      <%= agama[i].nama %>
+    </option>
     
     <% } %>
   </select>
@@ -51,10 +63,13 @@
     <select name="form_jabatan">
       <option value="">--pilih--</option>
       <% for( let i = 0; i < jabatan.length; i++ ) { %>
-      <option value="<%= jabatan[i].id %>"><%= jabatan[i].nama %></option>
+      <option value="<%= jabatan[i].id %>"
+        <%= (data_karyawan[0].jabatan_id == jabatan[i].id)?'selected':'' %>>
+      <%= jabatan[i].nama %>
+      </option>
       <% } %>
     </select>
   </div>
 
-  <button type="submit">Simpan</button>
+  <button type="submit">Update</button>
 </form>
