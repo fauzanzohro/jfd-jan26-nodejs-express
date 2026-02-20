@@ -88,6 +88,20 @@ app.get("/karyawan/edit/:id_kry", async (req, res) => {
   });
 });
 
+app.post("/karyawan/proses-edit/:id_kry", async (req, res) => {
+  try {
+    let proses_tambah =
+      await require("./model/m_karyawan").update_1_karyawan(req);
+    if (proses_tambah.affectedRows > 0) {
+      res.redirect("/karyawan?succes_msg=berhasil update karyawan baru");
+    }
+  } catch (error) {
+    res.redirect(
+      "/karyawan/edit/?error_msg=" + error.errorno + ":" + error.sqlMessege,
+    );
+  }
+});
+
 // app.use((req, res) => {
 //   res.status(404).render("error");
 // });
