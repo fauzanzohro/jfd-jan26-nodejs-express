@@ -21,7 +21,17 @@ module.exports = {
     });
   },
   get_1_karyawan: function (id_kry) {
-    let sql = mysql.format("SELECT * FROM karyawan WHERE id =?", [id_kry]);
+    let sql = mysql.format(
+      `SELECT 
+       karyawan.*,
+       agama.nama AS nama_agama,
+       jabatan.nama As nama_jabatan
+       FROM karyawan
+       LEFT JOIN agama ON karyawan.agama_id=agama.id
+       LEFT JOIN jabatan ON karyawan.jabatan_id=jabatan.id
+       WHERE karyawan.id =?`,
+      [id_kry],
+    );
     return new Promise(function (resolve, reject) {
       db.query(sql, function (errorSql, hasil) {
         if (errorSql) {
